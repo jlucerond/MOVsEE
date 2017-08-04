@@ -18,20 +18,51 @@ class MovieSearchTableViewController: UITableViewController {
             }
         }
     }
+    
+    // MARK: - View Controller Life Cycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
 
-    // MARK: - Table View Data Source
+// MARK: - Table View Data Source
+extension MovieSearchTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return movies.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let movie = movies[indexPath.row]
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
+        
+        cell.updateViewsFor(movie: movie)
+        
         return cell
     }
-
-
 }
+
+// MARK: - Table View Data Source
+extension MovieSearchTableViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        MovieController.grabAllMoviesWith(usersSearchTerm: searchText) { (movies) in
+            print(searchText)
+            self.movies = movies
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+}
+
+
+
+
+
+
+
+
