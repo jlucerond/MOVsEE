@@ -14,6 +14,7 @@
 		D8918C191F34CEAA005572BB /* MovieSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8918C181F34CEAA005572BB /* MovieSearchTableViewController.swift */; };
 		D8918C1C1F34CEC1005572BB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8918C1B1F34CEC1005572BB /* Movie.swift */; };
 		D8918C1E1F34CEC6005572BB /* MovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8918C1D1F34CEC6005572BB /* MovieController.swift */; };
+		D8918C211F34DBB6005572BB /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8918C201F34DBB6005572BB /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D8918C181F34CEAA005572BB /* MovieSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieSearchTableViewController.swift; path = ../MovieSearchTableViewController.swift; sourceTree = "<group>"; };
 		D8918C1B1F34CEC1005572BB /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D8918C1D1F34CEC6005572BB /* MovieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieController.swift; sourceTree = "<group>"; };
+		D8918C201F34DBB6005572BB /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				D8918C091F34CE53005572BB /* Main.storyboard */,
 				D8918C181F34CEAA005572BB /* MovieSearchTableViewController.swift */,
+				D8918C201F34DBB6005572BB /* MovieTableViewCell.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8918C211F34DBB6005572BB /* MovieTableViewCell.swift in Sources */,
 				D8918C1E1F34CEC6005572BB /* MovieController.swift in Sources */,
 				D8918C191F34CEAA005572BB /* MovieSearchTableViewController.swift in Sources */,
 				D8918C061F34CE53005572BB /* AppDelegate.swift in Sources */,

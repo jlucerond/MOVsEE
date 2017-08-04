@@ -6,12 +6,13 @@
 //  Copyright © 2017 Joe Lucero. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class MovieController {
     
     private static let myAPIValue = "241e7cdd9c39c228149aecefa596fdbb"
     private static let baseURL = URL(string: "https://api.themoviedb.org/3/search/movie")
+    private static let baseImageURL = URL(string: "https://image.tmdb.org/t/p/w154")
     private static let apiKey = "api_key"
     private static let nameKey = "query"
     
@@ -26,7 +27,6 @@ class MovieController {
         urlWithComponents.queryItems = [apiQuery, searchQuery]
         
         let finalURL = urlWithComponents.url!
-        print(finalURL.absoluteString)
         
         var request = URLRequest(url: finalURL)
         request.httpMethod = "GET"
@@ -52,5 +52,39 @@ class MovieController {
         
     }
     
+    static func grabMoviePosterFor(movie: Movie, completion: @escaping (UIImage?) -> Void) {
+        guard let imageURL = baseImageURL?.appendingPathComponent(movie.posterPath) else { completion(nil) ; return }
+        
+        var request = URLRequest(url: imageURL)
+        request.httpMethod = "GET"
+        request.httpBody = nil
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error { print("Error: \(error.localizedDescription)") ; completion(nil) ; return }
+            
+            guard let data = data else { completion(nil) ; return }
+            
+            let image = UIImage(data: data)
+            
+            completion(image)
+        }
+        
+        dataTask.resume()
+        
+    }
+    
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
