@@ -10,9 +10,14 @@ import UIKit
 
 class MovieController {
     
+    enum MoviePosterSize: String {
+        case small = "w154"
+        case large = "w300"
+    }
+    
     private static let myAPIValue = "241e7cdd9c39c228149aecefa596fdbb"
     private static let baseURL = URL(string: "https://api.themoviedb.org/3/search/movie")
-    private static let baseImageURL = URL(string: "https://image.tmdb.org/t/p/w154")
+    private static let baseImageURL = URL(string: "https://image.tmdb.org/t/p/")
     private static let apiKey = "api_key"
     private static let nameKey = "query"
     
@@ -52,8 +57,11 @@ class MovieController {
         
     }
     
-    static func grabMoviePosterFor(movie: Movie, completion: @escaping (UIImage?) -> Void) {
-        guard let imageURL = baseImageURL?.appendingPathComponent(movie.posterPath) else { completion(nil) ; return }
+    static func grabMoviePosterFor(movie: Movie, sizeOfPoster: MoviePosterSize, completion: @escaping (UIImage?) -> Void) {
+        
+        
+        
+        guard let imageURL = baseImageURL?.appendingPathComponent(sizeOfPoster.rawValue).appendingPathComponent(movie.posterPath) else { completion(nil) ; return }
         
         var request = URLRequest(url: imageURL)
         request.httpMethod = "GET"
@@ -72,7 +80,35 @@ class MovieController {
         dataTask.resume()
         
     }
-    
+        
+    static func howManyStars(rating: Double) -> String {
+        let intRating = Int(round(rating))
+        
+        switch intRating {
+        case 1:
+            return "⭐️"
+        case 2:
+            return "⭐️⭐️"
+        case 3:
+            return "⭐️⭐️⭐️"
+        case 4:
+            return "⭐️⭐️⭐️⭐️"
+        case 5:
+            return "⭐️⭐️⭐️⭐️⭐️"
+        case 6:
+            return "⭐️⭐️⭐️⭐️⭐️⭐️"
+        case 7:
+            return "⭐️⭐️⭐️⭐️⭐️⭐️⭐️"
+        case 8:
+            return "⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️"
+        case 9:
+            return "⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️"
+        case 10:
+            return "⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️"
+        default:
+            return ""
+        }
+    }
     
 }
 

@@ -37,6 +37,7 @@ extension MovieSearchTableViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell else { return UITableViewCell() }
         
+        cell.movieImageView.image = nil
         cell.updateViewsFor(movie: movie)
         
         return cell
@@ -48,7 +49,6 @@ extension MovieSearchTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         MovieController.grabAllMoviesWith(usersSearchTerm: searchText) { (movies) in
-            print(searchText)
             self.movies = movies
         }
     }
@@ -57,6 +57,20 @@ extension MovieSearchTableViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
     
+}
+
+// MARK: - Navigation
+extension MovieSearchTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MovieDetail" {
+            
+            
+            guard let detailVC = segue.destination as? MovieDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            detailVC.movie = movies[indexPath.row]
+        }
+    }
 }
 
 
